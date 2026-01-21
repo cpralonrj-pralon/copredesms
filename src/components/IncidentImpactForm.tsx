@@ -9,7 +9,7 @@ interface IncidentImpactFormProps {
 export function IncidentImpactForm({ onMessageChange, onValidationChange }: IncidentImpactFormProps) {
     const [formData, setFormData] = useState({
         topologia: '',
-        incidente: 'ROMPIMENTO DE FIBRA RESIDENCIAL',
+        incidente: '',
         cidade_cluster: '',
         area_distrito: '',
         impacto: '',
@@ -73,13 +73,29 @@ export function IncidentImpactForm({ onMessageChange, onValidationChange }: Inci
                         <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                             {field.label}
                         </label>
-                        <input
-                            type="text"
-                            value={formData[field.id as keyof typeof formData]}
-                            onChange={(e) => handleChange(field.id, e.target.value)}
-                            className="w-full bg-slate-950 border border-slate-800 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all uppercase placeholder:normal-case placeholder:text-slate-800"
-                            placeholder={field.placeholder}
-                        />
+                        {field.id === 'cidade_cluster' ? (
+                            <select
+                                value={formData[field.id as keyof typeof formData]}
+                                onChange={(e) => handleChange(field.id, e.target.value)}
+                                className="w-full bg-slate-950 border border-slate-800 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all uppercase placeholder:normal-case"
+                            >
+                                <option value="" disabled>Selecione...</option>
+                                <option value="RIO DE JANEIRO/ESPIRITO SANTO">RIO DE JANEIRO/ESPIRITO SANTO</option>
+                                <option value="MINAS GERAIS">MINAS GERAIS</option>
+                                <option value="NORDESTE">NORDESTE</option>
+                                <option value="BAHIA/SERGIPE">BAHIA/SERGIPE</option>
+                                <option value="NORTE">NORTE</option>
+                                <option value="CENTRO OESTE">CENTRO OESTE</option>
+                            </select>
+                        ) : (
+                            <input
+                                type="text"
+                                value={formData[field.id as keyof typeof formData]}
+                                onChange={(e) => handleChange(field.id, e.target.value)}
+                                className="w-full bg-slate-950 border border-slate-800 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all uppercase placeholder:normal-case placeholder:text-slate-800"
+                                placeholder={field.placeholder}
+                            />
+                        )}
                     </div>
                 ))}
             </div>
