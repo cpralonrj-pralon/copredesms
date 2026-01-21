@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: copredesms-backend
+    runtime: node
+    plan: free
+    region: oregon
+    # Importante: Aponta para a pasta do backend
+    rootDirectory: backend
+    
+    # Comandos para instalar dependências e compilar
+    buildCommand: npm install && npm run build
+    
+    # Comando para iniciar o servidor
+    startCommand: npm run start:prod
+    
+    # Variáveis de ambiente que você precisará preencher no painel do Render
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: N8N_WEBHOOK_URL
+        sync: false
+      - key: N8N_INTERNAL_TOKEN
+        sync: false
+      - key: PORT
+        value: 3000
