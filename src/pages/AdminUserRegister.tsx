@@ -3,10 +3,10 @@ import { UserPlus, AlertCircle } from 'lucide-react';
 import api from '../services/api';
 
 const REGIONS = [
-    'RIO DE JANEIRO/ESPIRITO SANTO',
+    'RIO DE JANEIRO / ESPIRITO SANTO',
     'MINAS GERAIS',
     'NORDESTE',
-    'BAHIA/SERGIPE',
+    'BAHIA / SERGIPE',
     'NORTE',
     'CENTRO OESTE',
     'Nacional (BR)'

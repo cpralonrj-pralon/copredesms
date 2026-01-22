@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '../services/api';
+import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { Lock, Key, Loader2, CheckCircle2 } from 'lucide-react';
 

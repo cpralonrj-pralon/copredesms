@@ -69,7 +69,7 @@ export class LogsService {
         const { data, error } = await this.supabaseService
             .getClient()
             .from('activity_logs')
-            .select('*')
+            .select('*, users(nome)')
             .eq('entidade_id', tenantId)
             .order('created_at', { ascending: false });
 

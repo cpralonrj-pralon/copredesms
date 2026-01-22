@@ -4,9 +4,10 @@ import { AlertTriangle } from 'lucide-react';
 interface IncidentImpactFormProps {
     onMessageChange: (msg: string) => void;
     onValidationChange: (isValid: boolean, missingFields: string[]) => void;
+    onDataChange?: (data: any) => void;
 }
 
-export function IncidentImpactForm({ onMessageChange, onValidationChange }: IncidentImpactFormProps) {
+export function IncidentImpactForm({ onMessageChange, onValidationChange, onDataChange }: IncidentImpactFormProps) {
     const [formData, setFormData] = useState({
         topologia: '',
         incidente: '',
@@ -59,7 +60,10 @@ export function IncidentImpactForm({ onMessageChange, onValidationChange }: Inci
         } else {
             onMessageChange('');
         }
-    }, [formData]);
+        if (onDataChange) {
+            onDataChange(formData);
+        }
+    }, [formData, onDataChange]);
 
     const handleChange = (field: string, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value.toUpperCase() }));

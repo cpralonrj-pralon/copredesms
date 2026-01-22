@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { DispatchForm } from '../components/DispatchForm';
@@ -6,16 +6,32 @@ import { SMSPreview } from '../components/SMSPreview';
 import { DispatchHistory } from '../components/DispatchHistory';
 import type { DispatchLog } from '../components/DispatchHistory';
 
-const MOCK_LOGS: DispatchLog[] = [
-    { id: '1', timestamp: '10:45:12', region: 'SP-01', status: 'DELIVERED', team: 'Equipe_7', action: 'REENTRADA' },
-    { id: '2', timestamp: '09:12:05', region: 'RJ-04', status: 'DELIVERED', team: 'Equipe_2', action: 'DETALHES' },
-    { id: '3', timestamp: '08:55:30', region: 'MG-02', status: 'FAILED', team: 'Equipe_1', action: 'REENTRADA' },
-];
-
 export function AlertDispatcher() {
     const { user, profile } = useAuth();
     const [currentMessage, setCurrentMessage] = useState('');
-    const [logs, setLogs] = useState<DispatchLog[]>(MOCK_LOGS);
+    const [logs, setLogs] = useState<DispatchLog[]>([]);
+
+    useEffect(() => {
+        const fetchRecentLogs = async () => {
+            try {
+                const { data } = await api.get('/logs');
+                if (data) {
+                    const formattedLogs: DispatchLog[] = data.slice(0, 50).map((log: any) => ({
+                        id: log.id,
+                        timestamp: new Date(log.created_at).toLocaleTimeString('pt-BR'),
+                        region: log.regional || 'N/A',
+                        status: log.status === 'SUCCESS' ? 'DELIVERED' : 'FAILED',
+                        team: log.users?.nome || 'Sistema',
+                        action: 'DETALHES'
+                    }));
+                    setLogs(formattedLogs);
+                }
+            } catch (error) {
+                console.error('Failed to fetch logs', error);
+            }
+        };
+        fetchRecentLogs();
+    }, []);
 
     const handleDispatch = async (data: any) => {
         try {
@@ -33,7 +49,7 @@ export function AlertDispatcher() {
                 timestamp: new Date().toLocaleTimeString('pt-BR'),
                 region: data.region.split(' ')[0],
                 status: response.data.status === 'SUCCESS' ? 'DELIVERED' : 'FAILED',
-                team: 'Equipe_' + Math.floor(Math.random() * 10),
+                team: profile?.nome || 'Sistema',
                 action: 'DETALHES'
             };
             setLogs([newLog, ...logs]);
@@ -45,7 +61,7 @@ export function AlertDispatcher() {
                 timestamp: new Date().toLocaleTimeString('pt-BR'),
                 region: data.region.split(' ')[0],
                 status: 'FAILED',
-                team: 'Sistema',
+                team: profile?.nome || 'Sistema',
                 action: 'REENTRADA'
             }, ...logs]);
         }

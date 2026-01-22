@@ -1,4 +1,4 @@
-import { LayoutGrid, Send, Clock, Users, Settings, LogOut, AlertOctagon, Layers } from 'lucide-react';
+import { LayoutGrid, Send, Clock, Users, Settings, LogOut, AlertOctagon, Layers, Map, BarChart2 } from 'lucide-react';
 import type { ViewType } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -21,7 +21,29 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                 </div>
 
                 <nav className="space-y-1">
-                    <NavItem icon={<LayoutGrid size={20} />} label="Status da Rede" onClick={() => { }} />
+                    <NavItem
+                        icon={<LayoutGrid size={20} />}
+                        label="Visão Geral"
+                        active={activeView === 'dashboard'}
+                        onClick={() => onViewChange('dashboard')}
+                    />
+                    <NavItem
+                        icon={<Map size={20} />}
+                        label="Visão Regional"
+                        active={activeView === 'regional'}
+                        onClick={() => onViewChange('regional')}
+                    />
+                    <NavItem
+                        icon={<BarChart2 size={20} />}
+                        label="Análise Temporal"
+                        active={activeView === 'temporal'}
+                        onClick={() => onViewChange('temporal')}
+                    />
+
+                    <div className="pt-4 pb-2">
+                        <p className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Operação</p>
+                    </div>
+
                     <NavItem
                         icon={<Send size={20} />}
                         label="Despacho de Alertas"
@@ -46,7 +68,12 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                         active={activeView === 'logs'}
                         onClick={() => onViewChange('logs')}
                     />
-                    <NavItem icon={<Users size={20} />} label="Equipes Técnicas" onClick={() => { }} />
+                    <NavItem
+                        icon={<Users size={20} />}
+                        label="Audit. Operacional"
+                        active={activeView === 'users'}
+                        onClick={() => onViewChange('users')}
+                    />
                 </nav>
             </div>
 

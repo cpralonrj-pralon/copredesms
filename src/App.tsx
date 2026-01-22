@@ -11,10 +11,15 @@ import { Loader2 } from 'lucide-react';
 
 import { AdminUserRegister } from './pages/AdminUserRegister';
 
-export type ViewType = 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register';
+import { DashboardOverview } from './pages/dashboard/DashboardOverview';
+import { RegionalAnalysis } from './pages/dashboard/RegionalAnalysis';
+import { TemporalAnalysis } from './pages/dashboard/TemporalAnalysis';
+import { UserPerformance } from './pages/dashboard/UserPerformance';
+
+export type ViewType = 'dashboard' | 'regional' | 'temporal' | 'users' | 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register';
 
 function App() {
-  const [activeView, setActiveView] = useState<ViewType>('dispatcher');
+  const [activeView, setActiveView] = useState<ViewType>('dashboard');
   const { session, profile, loading } = useAuth();
 
   if (loading) {
@@ -35,6 +40,10 @@ function App() {
 
   return (
     <Layout activeView={activeView} onViewChange={setActiveView}>
+      {activeView === 'dashboard' && <DashboardOverview />}
+      {activeView === 'regional' && <RegionalAnalysis />}
+      {activeView === 'temporal' && <TemporalAnalysis />}
+      {activeView === 'users' && <UserPerformance />}
       {activeView === 'dispatcher' && <AlertDispatcher />}
       {activeView === 'impact' && <IncidentImpactGenerator />}
       {activeView === 'massive' && <MassiveSmsGenerator />}

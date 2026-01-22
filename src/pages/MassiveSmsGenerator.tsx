@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { SMSPreview } from '../components/SMSPreview';
@@ -7,26 +7,43 @@ import type { DispatchLog } from '../components/DispatchHistory';
 import { Copy, Check, Send, Globe, AlertCircle } from 'lucide-react';
 
 const REGIONS = [
-    'RIO DE JANEIRO/ESPIRITO SANTO',
+    'RIO DE JANEIRO / ESPIRITO SANTO',
     'MINAS GERAIS',
     'NORDESTE',
-    'BAHIA/SERGIPE',
+    'BAHIA / SERGIPE',
     'NORTE',
     'CENTRO OESTE',
-];
-
-const MOCK_LOGS: DispatchLog[] = [
-    { id: 'm1', timestamp: '11:20:05', region: 'SP-01', status: 'DELIVERED', team: 'Equipe_5', action: 'DETALHES' },
-    { id: 'm2', timestamp: '10:55:12', region: 'RJ-04', status: 'DELIVERED', team: 'Equipe_3', action: 'DETALHES' },
 ];
 
 export function MassiveSmsGenerator() {
     const { user, profile } = useAuth();
     const [message, setMessage] = useState('');
     const [selectedRegions, setSelectedRegions] = useState<string[]>(REGIONS);
-    const [logs, setLogs] = useState<DispatchLog[]>(MOCK_LOGS);
+    const [logs, setLogs] = useState<DispatchLog[]>([]);
     const [copied, setCopied] = useState(false);
     const [dispatched, setDispatched] = useState(false);
+
+    useEffect(() => {
+        const fetchRecentLogs = async () => {
+            try {
+                const { data } = await api.get('/logs');
+                if (data) {
+                    const formattedLogs: DispatchLog[] = data.slice(0, 50).map((log: any) => ({
+                        id: log.id,
+                        timestamp: new Date(log.created_at).toLocaleTimeString('pt-BR'),
+                        region: log.regional || 'N/A',
+                        status: log.status === 'SUCCESS' ? 'DELIVERED' : 'FAILED',
+                        team: log.users?.nome || 'Sistema',
+                        action: 'DETALHES'
+                    }));
+                    setLogs(formattedLogs);
+                }
+            } catch (error) {
+                console.error('Failed to fetch logs', error);
+            }
+        };
+        fetchRecentLogs();
+    }, []);
 
     const toggleRegion = (region: string) => {
         setSelectedRegions(prev =>
@@ -59,10 +76,10 @@ export function MassiveSmsGenerator() {
             const dispatchedLogs: DispatchLog[] = [];
 
             try {
-                // Send single request with ALL regions
+                // Send request with ALL selected regions
                 const response = await api.post('/messages/send', {
                     canal: 'SMS',
-                    regional: selectedRegions, // Send array directly
+                    regional: selectedRegions, // Send array directly so backend handles it as Massive
                     telefone: '5521999999999', // Placeholder
                     mensagem: message,
                     tipo: 'MASSIVO',
@@ -73,9 +90,9 @@ export function MassiveSmsGenerator() {
                 dispatchedLogs.push({
                     id: response.data.id || (Date.now() + Math.random()).toString(),
                     timestamp: now,
-                    region: 'MULTI', // Indicate multiple regions
+                    region: selectedRegions.length > 1 ? 'MULTI' : selectedRegions[0],
                     status: response.data.status === 'SUCCESS' ? 'DELIVERED' : 'FAILED',
-                    team: 'Equipe_M',
+                    team: profile?.nome || 'Sistema',
                     action: 'DETALHES'
                 });
 
@@ -86,12 +103,12 @@ export function MassiveSmsGenerator() {
                     timestamp: now,
                     region: 'MULTI',
                     status: 'FAILED',
-                    team: 'Sistema',
+                    team: profile?.nome || 'Sistema',
                     action: 'REENTRADA'
                 });
             }
 
-            setLogs([...dispatchedLogs, ...logs]);
+            setLogs(prev => [...dispatchedLogs, ...prev]);
             setTimeout(() => setDispatched(false), 3000);
         }
     };

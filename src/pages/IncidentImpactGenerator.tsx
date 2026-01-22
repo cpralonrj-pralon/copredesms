@@ -14,6 +14,8 @@ export function IncidentImpactGenerator() {
     const [copied, setCopied] = useState(false);
     const [dispatched, setDispatched] = useState(false);
 
+    const [formData, setFormData] = useState<any>(null);
+
     const handleCopy = () => {
         if (currentMessage) {
             navigator.clipboard.writeText(currentMessage);
@@ -28,7 +30,7 @@ export function IncidentImpactGenerator() {
                 setDispatched(true);
                 await api.post('/messages/send', {
                     canal: 'WHATSAPP', // Incidente com impacto costuma ser via WhatsApp/Grupo
-                    regional: 'NACIONAL', // Default para impacto
+                    regional: formData?.cidade_cluster || 'NACIONAL', // Use selected cluster or default
                     telefone: '5521999999999', // Placeholder para grupo ou gestor
                     mensagem: currentMessage,
                     tipo: 'IMPACTO',
@@ -70,6 +72,7 @@ export function IncidentImpactGenerator() {
                                 setIsValid(valid);
                                 setMissingFields(missing);
                             }}
+                            onDataChange={setFormData}
                         />
                     </div>
 

@@ -26,7 +26,7 @@ export function DispatchHistory({ logs }: { logs: DispatchLog[] }) {
                             <th className="px-6 py-4">Horário</th>
                             <th className="px-6 py-4">Região</th>
                             <th className="px-6 py-4">Status</th>
-                            <th className="px-6 py-4">Equipe</th>
+                            <th className="px-6 py-4">Operador</th>
                             <th className="px-6 py-4 text-right">Ação</th>
                         </tr>
                     </thead>

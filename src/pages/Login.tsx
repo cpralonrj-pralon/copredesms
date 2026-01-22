@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '../services/api';
+import { supabase } from '../lib/supabase';
 import { Shield, Lock, Mail, Loader2 } from 'lucide-react';
 
 export function Login() {
