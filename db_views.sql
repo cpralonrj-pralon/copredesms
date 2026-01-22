@@ -34,7 +34,9 @@ DROP VIEW IF EXISTS vw_mensagens_por_cluster CASCADE;
 CREATE OR REPLACE VIEW vw_mensagens_por_cluster AS
 SELECT
     regional as cluster,
-    COUNT(*) as total
+    COUNT(*) as total,
+    COUNT(*) FILTER (WHERE status = 'SUCCESS') as sucesso,
+    COUNT(*) FILTER (WHERE status = 'FAILED') as falha
 FROM
     activity_logs
 WHERE

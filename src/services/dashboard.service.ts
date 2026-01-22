@@ -134,12 +134,8 @@ export const DashboardService = {
         return (data || []).map((row: any) => ({
             name: row.cluster,
             total: row.total,
-            success: 0, // View vs Interface gap: View likely only has Total? 
-            // Prompt said "vw_mensagens_por_cluster (cluster, total)". 
-            // It does NOT list success/fail columns. 
-            // I will define success as total for now or 0 to be safe, 
-            // as accessing raw tables is forbidden.
-            failed: 0
+            success: row.sucesso || 0,
+            failed: row.falha || 0
         }));
     },
 
