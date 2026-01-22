@@ -85,7 +85,7 @@ export function UserPerformance() {
                                     contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#e2e8f0' }}
                                 />
                                 <Bar dataKey="total" name="Total Enviado" radius={[0, 4, 4, 0]} barSize={20}>
-                                    {userStats.map((entry, index) => (
+                                    {userStats.map((_entry, index) => (
                                         <Cell key={`cell-${index}`} fill={index === 0 ? '#eab308' : index === 1 ? '#94a3b8' : index === 2 ? '#b45309' : '#3b82f6'} />
                                     ))}
                                 </Bar>

@@ -2,13 +2,12 @@ import { useEffect, useState, useMemo } from 'react';
 import api from '../services/api';
 import { supabase } from '../lib/supabase';
 import {
-    Clock, RefreshCw, Smartphone, MessageSquare, AlertCircle, CheckCircle2,
-    Search, Download, Filter, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight
+    RefreshCw, Smartphone, MessageSquare, AlertCircle, CheckCircle2,
+    Search, Download, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight
 } from 'lucide-react';
 import {
     useReactTable,
     getCoreRowModel,
-    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
     flexRender,

@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import { startOfDay, subDays, subHours, format } from 'date-fns';
+import { subDays, format } from 'date-fns';
 
 // INTERFACES (Aligned with Frontend Requirements)
 export interface DashboardKPI {
@@ -45,9 +45,6 @@ export const DashboardService = {
      * vw_envios_por_dia, vw_volume_por_canal, vw_taxa_sucesso
      */
     getKPIs: async (): Promise<DashboardKPI> => {
-        const today = new Date().toISOString().split('T')[0];
-
-
         // 1. Volume por Canal (SMS)
         const { data: smsData } = await supabase
             .from('vw_volume_por_canal')
