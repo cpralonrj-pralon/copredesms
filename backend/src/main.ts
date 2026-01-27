@@ -21,7 +21,18 @@ async function bootstrap() {
   );
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  console.log(`Backend rodando em: http://localhost:${port}/api/v1`);
+
+  // Log de inicialização para auxiliar no debug do Railway
+  console.log('--- Iniciando Backend ---');
+  console.log(`Porta configurada: ${port}`);
+  console.log(`Node Environment: ${process.env.NODE_ENV}`);
+
+  // Verificar variáveis críticas
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+    console.warn('AVISO: Variáveis do Supabase não configuradas!');
+  }
+
+  await app.listen(port, '0.0.0.0');
+  console.log(`Backend rodando em: http://0.0.0.0:${port}/api/v1`);
 }
 bootstrap();
