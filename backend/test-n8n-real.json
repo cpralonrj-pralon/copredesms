@@ -1,0 +1,98 @@
+[
+    {
+        "eventType": "sync",
+        "groups": [
+            {
+                "groupId": "557182173522-1452687150@g.us",
+                "groupName": "Nordeste",
+                "description": "Grupo regional Nordeste",
+                "memberCount": 950,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Claudio Pralon",
+                    "content": "*📢 COP REDE INF*\n\n🏷️ *TIPO:* OTG FIBRA HFC - GPON\n⏰ *Horário de envio:* 26/01/2026 22:50:54\n\n🔔 *M",
+                    "timestamp": "2026-01-27T01:51:00.000Z"
+                }
+            },
+            {
+                "groupId": "5521994003069-1485427833@g.us",
+                "groupName": "Rio de Janeiro",
+                "description": "Grupo regional Rio",
+                "memberCount": 31816,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Yasmin",
+                    "content": "TÉRMINO\nCOP REDE SITES MOVEL\nEVENTO MASSIVO  (05 ESTAÇÕES)\n\nIncidente Helix: INC000004685953\nDiretor",
+                    "timestamp": "2026-01-27T01:53:36.000Z"
+                }
+            },
+            {
+                "groupId": "557181661088-1608031441@g.us",
+                "groupName": "Bahia",
+                "description": "Grupo regional Bahia",
+                "memberCount": 1449,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Claudio Pralon",
+                    "content": "*📢 COP REDE INF*\n\n🏷️ *TIPO:* OTG FIBRA HFC - GPON\n⏰ *Horário de envio:* 26/01/2026 22:50:58\n\n🔔 *M",
+                    "timestamp": "2026-01-27T01:51:04.000Z"
+                }
+            },
+            {
+                "groupId": "120363132119558874@g.us",
+                "groupName": "Foco ME3",
+                "description": "Grupo Foco ME3",
+                "memberCount": 4147,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "COPREDE FO RESIDENCIAL",
+                    "content": "## ROMPIMENTO DE FIBRA RESIDENCIAL - TOPOLOGIA HFC ( ) GPON (X)\n## GRUPO: SPM\n## CIDADE: CAIEIRAS\n##",
+                    "timestamp": "2026-01-26T23:28:50.000Z"
+                }
+            },
+            {
+                "groupId": "120363421483823721@g.us",
+                "groupName": "Centro Oeste",
+                "description": "Grupo regional Centro Oeste",
+                "memberCount": 6781,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Claudio Pralon",
+                    "content": "*📢 COP REDE INF*\n\n🏷️ *TIPO:* OTG FIBRA HFC - GPON\n⏰ *Horário de envio:* 26/01/2026 22:50:55\n\n🔔 *M",
+                    "timestamp": "2026-01-27T01:51:01.000Z"
+                }
+            },
+            {
+                "groupId": "5521993571609-1617804100@g.us",
+                "groupName": "Norte",
+                "description": "Grupo regional Norte",
+                "memberCount": 7079,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Claudio Pralon",
+                    "content": "*📢 COP REDE INF*\n\n🏷️ *TIPO:* OTG FIBRA HFC - GPON\n⏰ *Horário de envio:* 26/01/2026 22:50:53\n\n🔔 *M",
+                    "timestamp": "2026-01-27T01:50:59.000Z"
+                }
+            },
+            {
+                "groupId": "120363353923537257@g.us",
+                "groupName": "Minas Gerais",
+                "description": "Grupo regional Minas",
+                "memberCount": 7550,
+                "status": "active",
+                "unreadCount": 99,
+                "lastMessage": {
+                    "sender": "Claudio Pralon",
+                    "content": "*📢 COP REDE INF*\n\n🏷️ *TIPO:* OTG FIBRA HFC - GPON\n⏰ *Horário de envio:* 26/01/2026 22:50:57\n\n🔔 *M",
+                    "timestamp": "2026-01-27T01:51:02.000Z"
+                }
+            }
+        ]
+    }
+]

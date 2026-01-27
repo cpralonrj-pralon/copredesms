@@ -1,0 +1,52 @@
+[
+    {
+        "eventType": "sync",
+        "groups": [
+            {
+                "groupId": "557182173522-1452687150@g.us",
+                "groupName": "Nordeste",
+                "description": "Grupo regional Nordeste",
+                "memberCount": 950,
+                "status": "active",
+                "unreadCount": 5,
+                "messages": [
+                    {
+                        "sender": "Claudio Pralon",
+                        "content": "⚠️ *ALERTA URGENTE*\nFalha massiva identificada em Recife.\nEquipes em deslocamento.",
+                        "timestamp": "2026-01-27T02:30:00.000Z"
+                    },
+                    {
+                        "sender": "Técnico Silva",
+                        "content": "Confirmado rompimento de fibra na zona norte.",
+                        "timestamp": "2026-01-27T02:25:00.000Z"
+                    },
+                    {
+                        "sender": "Central",
+                        "content": "Chamado aberto: INC123456",
+                        "timestamp": "2026-01-27T02:20:00.000Z"
+                    }
+                ]
+            },
+            {
+                "groupId": "5521994003069-1485427833@g.us",
+                "groupName": "Rio de Janeiro",
+                "description": "Grupo regional Rio",
+                "memberCount": 31816,
+                "status": "active",
+                "unreadCount": 2,
+                "messages": [
+                    {
+                        "sender": "Yasmin",
+                        "content": "Manutenção programada finalizada com sucesso.",
+                        "timestamp": "2026-01-27T02:15:00.000Z"
+                    },
+                    {
+                        "sender": "Coordenação",
+                        "content": "Iniciando validação dos serviços.",
+                        "timestamp": "2026-01-27T02:10:00.000Z"
+                    }
+                ]
+            }
+        ]
+    }
+]

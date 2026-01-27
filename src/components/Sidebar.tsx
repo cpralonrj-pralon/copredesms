@@ -1,4 +1,4 @@
-import { LayoutGrid, Send, Clock, Users, Settings, LogOut, AlertOctagon, Layers, Map, BarChart2 } from 'lucide-react';
+import { LayoutGrid, Send, Clock, Users, Settings, LogOut, AlertOctagon, Layers, Map, BarChart2, Radio } from 'lucide-react';
 import type { ViewType } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -73,6 +73,17 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                         label="Audit. Operacional"
                         active={activeView === 'users'}
                         onClick={() => onViewChange('users')}
+                    />
+
+                    <div className="pt-4 pb-2">
+                        <p className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Monitoração</p>
+                    </div>
+
+                    <NavItem
+                        icon={<Radio size={20} />}
+                        label="Grupos WhatsApp"
+                        active={activeView === 'whatsapp-monitor'}
+                        onClick={() => onViewChange('whatsapp-monitor')}
                     />
                 </nav>
             </div>

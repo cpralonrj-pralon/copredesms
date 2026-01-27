@@ -6,6 +6,7 @@ import { UsersModule } from './modules/users/users.module';
 import { LogsModule } from './modules/logs/logs.module';
 import { N8nModule } from './modules/n8n/n8n.module';
 import { MessagesModule } from './modules/messages/messages.module';
+import { WhatsAppMonitorModule } from './modules/whatsapp-monitor/whatsapp-monitor.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -20,6 +21,7 @@ import { AppService } from './app.service';
     LogsModule,
     N8nModule,
     MessagesModule,
+    WhatsAppMonitorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

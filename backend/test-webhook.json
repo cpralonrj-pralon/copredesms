@@ -1,0 +1,33 @@
+[
+    {
+        "eventType": "sync",
+        "groups": [
+            {
+                "groupId": "teste123",
+                "groupName": "Grupo de Teste 1",
+                "description": "Descrição teste 1",
+                "memberCount": 100,
+                "status": "active",
+                "unreadCount": 10,
+                "lastMessage": {
+                    "sender": "João",
+                    "content": "Mensagem de teste",
+                    "timestamp": "2026-01-27T02:00:00.000Z"
+                }
+            },
+            {
+                "groupId": "teste456",
+                "groupName": "Grupo de Teste 2",
+                "description": "Descrição teste 2",
+                "memberCount": 50,
+                "status": "active",
+                "unreadCount": 5,
+                "lastMessage": {
+                    "sender": "Maria",
+                    "content": "Outra mensagem",
+                    "timestamp": "2026-01-27T02:05:00.000Z"
+                }
+            }
+        ]
+    }
+]

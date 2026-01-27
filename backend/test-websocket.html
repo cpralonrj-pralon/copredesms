@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebSocket Test</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <div id="status">Tentando conectar...</div>
+    <div id="logs"></div>
+
+    <script>
+        const socket = io('http://localhost:3000/whatsapp-monitor', {
+            transports: ['websocket', 'polling']
+        });
+
+        const statusDiv = document.getElementById('status');
+        const logsDiv = document.getElementById('logs');
+
+        function log(message) {
+            const p = document.createElement('p');
+            p.textContent = new Date().toLocaleTimeString() + ': ' + message;
+            logsDiv.appendChild(p);
+        }
+
+        socket.on('connect', () => {
+            statusDiv.textContent = '✅ Conectado!';
+            statusDiv.style.color = 'green';
+            log('Conectado ao WebSocket com ID: ' + socket.id);
+        });
+
+        socket.on('disconnect', () => {
+            statusDiv.textContent = '❌ Desconectado';
+            statusDiv.style.color = 'red';
+            log('Desconectado do WebSocket');
+        });
+
+        socket.on('connect_error', (error) => {
+            statusDiv.textContent = '❌ Erro de conexão';
+            statusDiv.style.color = 'red';
+            log('Erro de conexão: ' + error.message);
+        });
+
+        socket.on('group-update', (data) => {
+            log('Grupo atualizado: ' + JSON.stringify(data));
+        });
+
+        socket.on('groups-sync', (data) => {
+            log('Sincronização recebida: ' + data.length + ' grupos');
+        });
+    </script>
+</body>
+
+</html>

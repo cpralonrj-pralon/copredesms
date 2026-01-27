@@ -15,8 +15,9 @@ import { DashboardOverview } from './pages/dashboard/DashboardOverview';
 import { RegionalAnalysis } from './pages/dashboard/RegionalAnalysis';
 import { TemporalAnalysis } from './pages/dashboard/TemporalAnalysis';
 import { UserPerformance } from './pages/dashboard/UserPerformance';
+import { WhatsAppMonitor } from './pages/WhatsAppMonitor';
 
-export type ViewType = 'dashboard' | 'regional' | 'temporal' | 'users' | 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register';
+export type ViewType = 'dashboard' | 'regional' | 'temporal' | 'users' | 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register' | 'whatsapp-monitor';
 
 function App() {
   const [activeView, setActiveView] = useState<ViewType>('dashboard');
@@ -49,6 +50,7 @@ function App() {
       {activeView === 'massive' && <MassiveSmsGenerator />}
       {activeView === 'logs' && <ActivityLogs />}
       {activeView === 'admin-register' && <AdminUserRegister />}
+      {activeView === 'whatsapp-monitor' && <WhatsAppMonitor />}
     </Layout>
   );
 }
