@@ -27,29 +27,29 @@ export function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-app-main flex items-center justify-center p-4">
             <div className="max-w-md w-full">
                 {/* Logo / Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-4">
-                        <Shield className="w-8 h-8 text-cyan-400" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-app-primary/10 border border-app-primary/20 mb-4">
+                        <Shield className="w-8 h-8 text-app-primary" />
                     </div>
-                    <h1 className="text-2xl font-bold text-white">PAINEL COP REDE</h1>
-                    <p className="text-slate-400 mt-2 text-sm">Controle Operacional de SMS e WhatsApp</p>
+                    <h1 className="text-2xl font-bold text-app-text-main">PAINEL COP REDE</h1>
+                    <p className="text-app-text-secondary mt-2 text-sm">Controle Operacional de SMS e WhatsApp</p>
                 </div>
 
                 {/* Card */}
-                <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
+                <div className="bg-app-card border border-app-border p-8 rounded-2xl shadow-2xl">
                     <form onSubmit={handleLogin} className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">E-mail Corporativo</label>
+                            <label className="block text-sm font-medium text-app-text-secondary mb-2">E-mail Corporativo</label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-app-text-secondary" />
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg py-3 pl-11 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+                                    className="w-full bg-app-sidebar border border-app-border rounded-lg py-3 pl-11 pr-4 text-app-text-main focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition-all"
                                     placeholder="usuario@claro.com.br"
                                     required
                                 />
@@ -57,14 +57,14 @@ export function Login() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">Senha</label>
+                            <label className="block text-sm font-medium text-app-text-secondary mb-2">Senha</label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-app-text-secondary" />
                                 <input
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg py-3 pl-11 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+                                    className="w-full bg-app-sidebar border border-app-border rounded-lg py-3 pl-11 pr-4 text-app-text-main focus:outline-none focus:ring-2 focus:ring-app-primary/50 transition-all"
                                     placeholder="••••••••"
                                     required
                                 />
@@ -80,7 +80,7 @@ export function Login() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-800 disabled:text-slate-500 text-slate-950 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
+                            className="w-full bg-app-primary hover:bg-app-primary/80 disabled:bg-app-sidebar disabled:text-app-text-secondary text-app-primary-foreground font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
                         >
                             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'ACESSAR SISTEMA'}
                         </button>
@@ -88,7 +88,7 @@ export function Login() {
                 </div>
 
                 {/* Footer */}
-                <p className="text-center text-slate-500 text-xs mt-8 uppercase tracking-widest">
+                <p className="text-center text-app-text-secondary text-xs mt-8 uppercase tracking-widest opacity-60">
                     Acesso Restrito - Equipe de Monitoramento
                 </p>
             </div>

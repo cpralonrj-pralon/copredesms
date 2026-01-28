@@ -114,29 +114,29 @@ export function MassiveSmsGenerator() {
     };
 
     return (
-        <div className="p-8 h-full overflow-y-auto custom-scrollbar">
+        <div className="p-8 h-full overflow-y-auto custom-scrollbar bg-app-main">
             <div className="mb-8">
-                <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-app-text-secondary mb-1">
                     <span>Operações</span>
                     <span>›</span>
-                    <span className="text-cyan-500">Envio Massivo Regional</span>
+                    <span className="text-app-primary">Envio Massivo Regional</span>
                 </div>
-                <h1 className="text-3xl font-bold text-white mb-2 uppercase tracking-tight">Envio de SMS Massivo</h1>
-                <p className="text-slate-400 text-sm">Disparo de comunicações em massa para equipes técnicas regionais simultaneamente.</p>
+                <h1 className="text-3xl font-bold text-app-text-main mb-2 uppercase tracking-tight">Envio de SMS Massivo</h1>
+                <p className="text-app-text-secondary text-sm">Disparo de comunicações em massa para equipes técnicas regionais simultaneamente.</p>
             </div>
 
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-12 lg:col-span-8 space-y-6">
                     {/* Region Selection */}
-                    <div className="p-6 bg-slate-900 rounded-lg border border-slate-800">
+                    <div className="p-6 bg-app-card rounded-lg border border-app-border">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-lg font-semibold text-white flex items-center gap-2 uppercase tracking-tight">
-                                <span className="w-1 h-6 bg-cyan-500 rounded-full"></span>
+                            <h2 className="text-lg font-semibold text-app-text-main flex items-center gap-2 uppercase tracking-tight">
+                                <span className="w-1 h-6 bg-app-primary rounded-full"></span>
                                 Seleção de Destinatários
                             </h2>
                             <button
                                 onClick={toggleAll}
-                                className="text-[10px] font-bold text-cyan-500 hover:text-cyan-400 uppercase border border-cyan-900/50 px-2 py-1 rounded"
+                                className="text-[10px] font-bold text-app-primary hover:text-app-primary/80 uppercase border border-app-primary/30 px-2 py-1 rounded"
                             >
                                 {selectedRegions.length === REGIONS.length ? 'DESMARCAR TODOS' : 'SELECIONAR TODOS'}
                             </button>
@@ -150,8 +150,8 @@ export function MassiveSmsGenerator() {
                                     className={`
                                         px-4 py-2 rounded-full text-xs font-bold transition-all border
                                         ${selectedRegions.includes(region)
-                                            ? 'bg-cyan-900/20 border-cyan-500/50 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.1)]'
-                                            : 'bg-slate-950 border-slate-800 text-slate-500 hover:border-slate-700'}
+                                            ? 'bg-app-primary/10 border-app-primary text-app-primary shadow-[0_0_15px_rgba(var(--primary),0.1)]'
+                                            : 'bg-app-sidebar border-app-border text-app-text-secondary hover:border-app-text-secondary/50'}
                                     `}
                                 >
                                     {region}
@@ -161,10 +161,10 @@ export function MassiveSmsGenerator() {
                     </div>
 
                     {/* Message Area */}
-                    <div className="p-6 bg-slate-900 rounded-lg border border-slate-800">
+                    <div className="p-6 bg-app-card rounded-lg border border-app-border">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-semibold text-white uppercase tracking-tight">Conteúdo da Mensagem</h2>
-                            <span className={`text-[10px] font-bold ${message.length > 2000 ? 'text-red-500' : 'text-slate-600'}`}>
+                            <h2 className="text-lg font-semibold text-app-text-main uppercase tracking-tight">Conteúdo da Mensagem</h2>
+                            <span className={`text-[10px] font-bold ${message.length > 2000 ? 'text-red-500' : 'text-app-text-secondary opacity-60'}`}>
                                 {message.length} / 2000 CARACTERES
                             </span>
                         </div>
@@ -173,7 +173,7 @@ export function MassiveSmsGenerator() {
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             maxLength={2000}
-                            className="w-full h-64 bg-slate-950 border border-slate-800 rounded-lg p-5 text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all resize-none font-mono text-sm leading-relaxed placeholder:text-slate-800"
+                            className="w-full h-64 bg-app-sidebar border border-app-border rounded-lg p-5 text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all resize-none font-mono text-sm leading-relaxed placeholder:text-app-text-secondary/20"
                             placeholder="Digite aqui o texto da mensagem que sera enviada para todas as regionais selecionadas..."
                         />
 
@@ -182,7 +182,7 @@ export function MassiveSmsGenerator() {
                                 <button
                                     onClick={handleCopy}
                                     disabled={!message}
-                                    className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-md text-xs font-bold transition-all"
+                                    className="flex items-center gap-2 px-4 py-2 bg-app-sidebar hover:bg-app-border disabled:opacity-50 disabled:cursor-not-allowed text-app-text-main rounded-md text-xs font-bold transition-all border border-app-border"
                                 >
                                     {copied ? <Check size={14} /> : <Copy size={14} />}
                                     {copied ? 'COPIADO' : 'COPIAR TEXTO'}
@@ -203,7 +203,7 @@ export function MassiveSmsGenerator() {
                                     flex items-center gap-2 px-8 py-3 rounded-md text-sm font-bold transition-all transform active:scale-95 shadow-xl
                                     ${dispatched
                                         ? 'bg-emerald-600 text-white shadow-emerald-900/20'
-                                        : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-cyan-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none'}
+                                        : 'bg-app-primary hover:bg-app-primary/80 text-app-primary-foreground shadow-app-primary/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none'}
                                 `}
                             >
                                 {dispatched ? <Check size={18} /> : <Send size={18} />}
@@ -212,11 +212,11 @@ export function MassiveSmsGenerator() {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-4 p-4 bg-cyan-950/20 border border-cyan-900/30 rounded-lg">
-                        <Globe className="text-cyan-500 shrink-0 mt-1" size={20} />
+                    <div className="flex items-start gap-4 p-4 bg-app-primary/5 border border-app-primary/20 rounded-lg">
+                        <Globe className="text-app-primary shrink-0 mt-1" size={20} />
                         <div>
-                            <h4 className="text-xs font-bold text-cyan-400 uppercase mb-1">Impacto Global</h4>
-                            <p className="text-[10px] text-cyan-500/80 uppercase leading-relaxed">
+                            <h4 className="text-xs font-bold text-app-primary uppercase mb-1">Impacto Global</h4>
+                            <p className="text-[10px] text-app-text-secondary uppercase leading-relaxed">
                                 ESTA MENSAGEM SERA ENVIADA PARA {selectedRegions.length} REGIONAIS SIMULTANEAMENTE.
                                 USE ESTA FERRAMENTA PARA COMUNICADOS GERAIS, ALERTAS NACIONAIS OU ATUALIZACOES DE MALHA CRUCIAL.
                             </p>

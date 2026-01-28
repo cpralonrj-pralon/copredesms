@@ -99,15 +99,15 @@ export function WhatsAppMonitor() {
     });
 
     return (
-        <div className="p-6 space-y-6 h-screen overflow-y-auto pb-20 custom-scrollbar">
+        <div className="p-6 space-y-6 h-screen overflow-y-auto pb-20 custom-scrollbar bg-app-main">
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <h1 className="text-2xl font-bold text-app-text-main flex items-center gap-3">
                         <Radio className="text-green-500" size={28} />
                         Monitor de Grupos WhatsApp
                     </h1>
-                    <p className="text-slate-400 mt-1">
+                    <p className="text-app-text-secondary mt-1">
                         Monitoramento em tempo real dos grupos WhatsApp
                     </p>
                 </div>
@@ -131,21 +131,21 @@ export function WhatsAppMonitor() {
 
             {/* Estatísticas Gerais */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-lg p-5">
+                <div className="bg-app-card border border-app-border rounded-lg p-5">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-slate-400">Total de Grupos</p>
-                            <p className="text-3xl font-bold text-white mt-1">{groups.size}</p>
+                            <p className="text-sm text-app-text-secondary">Total de Grupos</p>
+                            <p className="text-3xl font-bold text-app-text-main mt-1">{groups.size}</p>
                         </div>
-                        <Users className="text-cyan-500" size={32} />
+                        <Users className="text-app-primary" size={32} />
                     </div>
                 </div>
 
-                <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-lg p-5">
+                <div className="bg-app-card border border-app-border rounded-lg p-5">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-slate-400">Grupos Ativos</p>
-                            <p className="text-3xl font-bold text-green-400 mt-1">
+                            <p className="text-sm text-app-text-secondary">Grupos Ativos</p>
+                            <p className="text-3xl font-bold text-green-500 mt-1">
                                 {groupsArray.filter((g) => g.status === 'active').length}
                             </p>
                         </div>
@@ -153,11 +153,11 @@ export function WhatsAppMonitor() {
                     </div>
                 </div>
 
-                <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-lg p-5">
+                <div className="bg-app-card border border-app-border rounded-lg p-5">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-slate-400">Mensagens Não Lidas</p>
-                            <p className="text-3xl font-bold text-yellow-400 mt-1">
+                            <p className="text-sm text-app-text-secondary">Mensagens Não Lidas</p>
+                            <p className="text-3xl font-bold text-yellow-500 mt-1">
                                 {groupsArray.reduce((acc, g) => acc + (g.unreadCount || 0), 0)}
                             </p>
                         </div>
@@ -168,12 +168,12 @@ export function WhatsAppMonitor() {
 
             {/* Grid de Grupos */}
             {groupsArray.length === 0 ? (
-                <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-12 text-center">
-                    <MessageSquare className="mx-auto text-slate-600 mb-4" size={64} />
-                    <h3 className="text-xl font-semibold text-slate-400 mb-2">
+                <div className="bg-app-card/30 border border-app-border rounded-lg p-12 text-center">
+                    <MessageSquare className="mx-auto text-app-text-secondary opacity-30 mb-4" size={64} />
+                    <h3 className="text-xl font-semibold text-app-text-secondary mb-2">
                         Nenhum grupo sendo monitorado
                     </h3>
-                    <p className="text-slate-500">
+                    <p className="text-app-text-secondary opacity-60">
                         Aguardando dados do n8n via webhook...
                     </p>
                 </div>

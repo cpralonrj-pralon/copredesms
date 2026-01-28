@@ -3,7 +3,96 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-slate-950 text-white font-sans;
+  :root {
+    /* Default - Slate/Cyan */
+    --bg-main: 2 6 23;
+    /* slate-950 */
+    --bg-sidebar: 15 23 42;
+    /* slate-900 */
+    --bg-card: 30 41 59;
+    /* slate-800 */
+    --primary: 6 182 212;
+    /* cyan-500 */
+    --primary-foreground: 255 255 255;
+    --text-main: 248 250 252;
+    /* slate-50 */
+    --text-secondary: 148 163 184;
+    /* slate-400 */
+    --sb-text: 248 250 252;
+    /* same as text-main for dark themes */
+    --sb-text-secondary: 148 163 184;
+    /* same as text-secondary for dark themes */
+    --border: 51 65 85;
+    /* slate-700 */
+    --border-light: 71 85 105;
+    /* slate-600 */
   }
+
+  .theme-dark {
+    /* Dark - Pure Black / Blue */
+    --bg-main: 0 0 0;
+    --bg-sidebar: 9 9 11;
+    /* zinc-950 */
+    --bg-card: 18 18 18;
+    --primary: 37 99 235;
+    /* blue-600 */
+    --primary-foreground: 255 255 255;
+    --text-main: 255 255 255;
+    --text-secondary: 161 161 170;
+    /* zinc-400 */
+    --sb-text: 255 255 255;
+    --sb-text-secondary: 161 161 170;
+    --border: 39 39 42;
+    /* zinc-800 */
+    --border-light: 63 63 70;
+    /* zinc-700 */
+  }
+
+  .theme-claro {
+    /* Claro - Red / Light */
+    --bg-main: 255 255 255;
+    --bg-sidebar: 239 0 0;
+    /* Claro Red */
+    --bg-card: 248 250 252;
+    /* slate-50 */
+    --primary: 239 0 0;
+    /* Claro Red */
+    --primary-foreground: 255 255 255;
+    --text-main: 15 23 42;
+    /* slate-900 */
+    --text-secondary: 71 85 105;
+    /* slate-600 */
+    --sb-text: 255 255 255;
+    /* White for red background */
+    --sb-text-secondary: 255 255 255;
+    /* White for red background */
+    --border: 226 232 240;
+    /* slate-200 */
+    --border-light: 203 213 225;
+    /* slate-300 */
+  }
+
+  body {
+    background-color: rgb(var(--bg-main));
+    color: rgb(var(--text-main));
+    @apply font-sans transition-colors duration-300;
+  }
+}
+
+/* Custom Scrollbar Theme Aware */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(var(--bg-main), 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(var(--primary), 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--primary), 0.4);
 }

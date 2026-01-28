@@ -74,14 +74,14 @@ export function IncidentImpactForm({ onMessageChange, onValidationChange, onData
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {fields.map((field) => (
                     <div key={field.id} className="space-y-1">
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                        <label className="text-[10px] font-bold text-app-text-secondary uppercase tracking-wider">
                             {field.label}
                         </label>
                         {field.id === 'cidade_cluster' ? (
                             <select
                                 value={formData[field.id as keyof typeof formData]}
                                 onChange={(e) => handleChange(field.id, e.target.value)}
-                                className="w-full bg-slate-950 border border-slate-800 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all uppercase placeholder:normal-case"
+                                className="w-full bg-app-sidebar border border-app-border rounded-md p-2 text-xs text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all uppercase placeholder:normal-case"
                             >
                                 <option value="" disabled>Selecione...</option>
                                 <option value="RIO DE JANEIRO/ESPIRITO SANTO">RIO DE JANEIRO/ESPIRITO SANTO</option>
@@ -96,7 +96,7 @@ export function IncidentImpactForm({ onMessageChange, onValidationChange, onData
                                 type="text"
                                 value={formData[field.id as keyof typeof formData]}
                                 onChange={(e) => handleChange(field.id, e.target.value)}
-                                className="w-full bg-slate-950 border border-slate-800 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all uppercase placeholder:normal-case placeholder:text-slate-800"
+                                className="w-full bg-app-sidebar border border-app-border rounded-md p-2 text-xs text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all uppercase placeholder:normal-case placeholder:text-app-text-secondary/30"
                                 placeholder={field.placeholder}
                             />
                         )}

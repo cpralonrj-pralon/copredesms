@@ -11,17 +11,17 @@ export interface DispatchLog {
 
 export function DispatchHistory({ logs }: { logs: DispatchLog[] }) {
     return (
-        <div className="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
-            <div className="p-4 border-b border-slate-800 flex justify-between items-center">
-                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Histórico de Despacho (Últimas 24h)</h3>
-                <button className="text-xs text-[#0092D8] hover:text-[#4dbced] font-medium flex items-center gap-1 transition-colors">
+        <div className="bg-app-card rounded-lg border border-app-border overflow-hidden">
+            <div className="p-4 border-b border-app-border flex justify-between items-center">
+                <h3 className="text-xs font-semibold text-app-text-secondary opacity-70 uppercase tracking-wider">Histórico de Despacho (Últimas 24h)</h3>
+                <button className="text-xs text-app-primary hover:text-app-primary/80 font-medium flex items-center gap-1 transition-colors">
                     VER LOGS COMPLETOS <span>→</span>
                 </button>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-slate-400">
-                    <thead className="bg-slate-950 text-xs uppercase text-slate-500 font-semibold">
+                <table className="w-full text-left text-sm text-app-text-secondary">
+                    <thead className="bg-app-sidebar text-xs uppercase text-app-text-secondary opacity-70 font-semibold">
                         <tr>
                             <th className="px-6 py-4">Horário</th>
                             <th className="px-6 py-4">Região</th>
@@ -30,17 +30,17 @@ export function DispatchHistory({ logs }: { logs: DispatchLog[] }) {
                             <th className="px-6 py-4 text-right">Ação</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800">
+                    <tbody className="divide-y divide-app-border">
                         {logs.map((log) => (
-                            <tr key={log.id} className="hover:bg-slate-800/30 transition-colors">
-                                <td className="px-6 py-4 font-mono text-xs text-slate-300">{log.timestamp}</td>
-                                <td className="px-6 py-4 text-slate-300">{log.region}</td>
+                            <tr key={log.id} className="hover:bg-app-sidebar/30 transition-colors">
+                                <td className="px-6 py-4 font-mono text-xs text-app-text-main">{log.timestamp}</td>
+                                <td className="px-6 py-4 text-app-text-main">{log.region}</td>
                                 <td className="px-6 py-4">
                                     <StatusBadge status={log.status} />
                                 </td>
-                                <td className="px-6 py-4 text-slate-300">{log.team}</td>
+                                <td className="px-6 py-4 text-app-text-main">{log.team}</td>
                                 <td className="px-6 py-4 text-right">
-                                    <button className="text-xs font-bold text-[#006497] hover:text-[#0092D8] uppercase tracking-wider">{log.action}</button>
+                                    <button className="text-xs font-bold text-app-primary hover:text-app-primary/80 uppercase tracking-wider">{log.action}</button>
                                 </td>
                             </tr>
                         ))}
@@ -56,7 +56,7 @@ function StatusBadge({ status }: { status: string }) {
         DELIVERED: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
         FAILED: 'bg-red-500/10 text-red-400 border-red-500/20',
         RETRY: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-        PENDING: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
+        PENDING: 'bg-app-text-secondary/10 text-app-text-secondary border-app-text-secondary/20',
     };
 
     const statusMap: Record<string, string> = {

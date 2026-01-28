@@ -35,7 +35,7 @@ export function TemporalAnalysis() {
     }, []);
 
     if (loading) {
-        return <div className="p-6 text-slate-500 animate-pulse">Carregando análise temporal...</div>;
+        return <div className="p-6 text-app-text-secondary animate-pulse">Carregando análise temporal...</div>;
     }
 
     // Peak hour calculation
@@ -44,44 +44,44 @@ export function TemporalAnalysis() {
 
     // Heatmap intensity helper
     const getIntensityColor = (count: number) => {
-        if (maxVolume === 0) return 'bg-slate-800';
+        if (maxVolume === 0) return 'bg-app-card';
         const ratio = count / maxVolume;
         if (ratio > 0.8) return 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]';
         if (ratio > 0.5) return 'bg-amber-500';
-        if (ratio > 0.2) return 'bg-emerald-500';
-        return 'bg-slate-700';
+        if (ratio > 0.2) return 'bg-emerald-500 text-white';
+        return 'bg-app-text-secondary/20';
     };
 
     return (
-        <div className="p-6 space-y-6 overflow-y-auto h-full bg-slate-950">
+        <div className="p-6 space-y-6 overflow-y-auto h-full bg-app-main">
             <header className="mb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-amber-500/10 rounded-lg">
                         <Clock className="text-amber-400" size={24} />
                     </div>
-                    <h1 className="text-2xl font-bold text-white">Análise Temporal</h1>
+                    <h1 className="text-2xl font-bold text-app-text-main">Análise Temporal</h1>
                 </div>
-                <p className="text-slate-500 text-sm">Distribuição de tráfego por horário e identificação de picos.</p>
+                <p className="text-app-text-secondary text-sm">Distribuição de tráfego por horário e identificação de picos.</p>
             </header>
 
             {/* Peak Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl flex items-center gap-4">
+                <div className="bg-app-card border border-app-border p-6 rounded-xl flex items-center gap-4">
                     <div className="p-3 bg-red-500/10 rounded-full text-red-500">
                         <Activity size={24} />
                     </div>
                     <div>
-                        <p className="text-slate-500 text-xs font-bold uppercase">Pico de Tráfego</p>
-                        <h3 className="text-2xl font-bold text-white">{peakHour}</h3>
+                        <p className="text-app-text-secondary text-xs font-bold uppercase">Pico de Tráfego</p>
+                        <h3 className="text-2xl font-bold text-app-text-main">{peakHour}</h3>
                     </div>
                 </div>
-                <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl flex items-center gap-4">
-                    <div className="p-3 bg-cyan-500/10 rounded-full text-cyan-500">
+                <div className="bg-app-card border border-app-border p-6 rounded-xl flex items-center gap-4">
+                    <div className="p-3 bg-app-primary/10 rounded-full text-app-primary">
                         <Zap size={24} />
                     </div>
                     <div>
-                        <p className="text-slate-500 text-xs font-bold uppercase">Volume Máx/Hora</p>
-                        <h3 className="text-2xl font-bold text-white">{maxVolume.toLocaleString()}</h3>
+                        <p className="text-app-text-secondary text-xs font-bold uppercase">Volume Máx/Hora</p>
+                        <h3 className="text-2xl font-bold text-app-text-main">{maxVolume.toLocaleString()}</h3>
                     </div>
                 </div>
             </div>
@@ -97,11 +97,15 @@ export function TemporalAnalysis() {
                                     <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                                 </linearGradient>
                             </defs>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                            <XAxis dataKey="hour" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-                            <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--border), 0.5)" vertical={false} />
+                            <XAxis dataKey="hour" stroke="rgb(var(--text-secondary))" fontSize={12} tickLine={false} axisLine={false} />
+                            <YAxis stroke="rgb(var(--text-secondary))" fontSize={12} tickLine={false} axisLine={false} />
                             <Tooltip
-                                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#e2e8f0' }}
+                                contentStyle={{
+                                    backgroundColor: 'rgb(var(--bg-card))',
+                                    borderColor: 'rgb(var(--border))',
+                                    color: 'rgb(var(--text-main))'
+                                }}
                             />
                             <Area type="monotone" dataKey="count" stroke="#f59e0b" fillOpacity={1} fill="url(#colorTraffic)" strokeWidth={2} />
                         </AreaChart>
@@ -110,8 +114,8 @@ export function TemporalAnalysis() {
             </div>
 
             {/* Heatmap Grid */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-                <h3 className="text-slate-100 font-semibold text-lg mb-6">Mapa de Calor (Intensidade Horária)</h3>
+            <div className="bg-app-card border border-app-border rounded-xl p-6">
+                <h3 className="text-app-text-main font-semibold text-lg mb-6">Mapa de Calor (Intensidade Horária)</h3>
                 <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-2">
                     {hourlyData.map((slot) => (
                         <div key={slot.hour} className="flex flex-col gap-1 group">
@@ -120,12 +124,12 @@ export function TemporalAnalysis() {
                                     {slot.count}
                                 </div>
                             </div>
-                            <span className="text-[10px] text-slate-500 text-center font-mono">{slot.hour.split(':')[0]}h</span>
+                            <span className="text-[10px] text-app-text-secondary text-center font-mono">{slot.hour.split(':')[0]}h</span>
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-end items-center gap-4 mt-4 text-xs text-slate-500">
-                    <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-slate-700"></div>Baixo</div>
+                <div className="flex justify-end items-center gap-4 mt-4 text-xs text-app-text-secondary">
+                    <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-app-text-secondary/20"></div>Baixo</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500"></div>Médio</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-amber-500"></div>Alto</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></div>Pico</div>

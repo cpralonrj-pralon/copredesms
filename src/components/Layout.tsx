@@ -32,7 +32,7 @@ export function Layout({ children, activeView, onViewChange }: {
     }, []);
 
     return (
-        <div className="flex h-screen bg-slate-950 overflow-hidden font-sans">
+        <div className="flex h-screen bg-app-main overflow-hidden font-sans">
             <Sidebar activeView={activeView} onViewChange={onViewChange} />
             <main className="flex-1 flex flex-col overflow-hidden relative">
                 <div className="absolute top-0 right-0 p-4 z-10">

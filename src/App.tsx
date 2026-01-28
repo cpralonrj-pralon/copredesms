@@ -16,8 +16,9 @@ import { RegionalAnalysis } from './pages/dashboard/RegionalAnalysis';
 import { TemporalAnalysis } from './pages/dashboard/TemporalAnalysis';
 import { UserPerformance } from './pages/dashboard/UserPerformance';
 import { WhatsAppMonitor } from './pages/WhatsAppMonitor';
+import { SystemSettings } from './pages/SystemSettings';
 
-export type ViewType = 'dashboard' | 'regional' | 'temporal' | 'users' | 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register' | 'whatsapp-monitor';
+export type ViewType = 'dashboard' | 'regional' | 'temporal' | 'users' | 'dispatcher' | 'impact' | 'massive' | 'logs' | 'admin-register' | 'whatsapp-monitor' | 'settings';
 
 function App() {
   const [activeView, setActiveView] = useState<ViewType>('dashboard');
@@ -25,8 +26,8 @@ function App() {
 
   if (loading) {
     return (
-      <div className="h-screen bg-slate-950 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-cyan-500 animate-spin" />
+      <div className="h-screen bg-app-main flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-app-primary animate-spin" />
       </div>
     );
   }
@@ -51,6 +52,7 @@ function App() {
       {activeView === 'logs' && <ActivityLogs />}
       {activeView === 'admin-register' && <AdminUserRegister />}
       {activeView === 'whatsapp-monitor' && <WhatsAppMonitor />}
+      {activeView === 'settings' && <SystemSettings />}
     </Layout>
   );
 }

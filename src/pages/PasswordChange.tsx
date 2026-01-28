@@ -57,44 +57,44 @@ export function PasswordChange() {
 
     if (success) {
         return (
-            <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-app-main flex items-center justify-center p-4">
                 <div className="max-w-md w-full text-center space-y-6 animate-fade-in">
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
                         <CheckCircle2 className="w-10 h-10 text-emerald-400" />
                     </div>
-                    <h1 className="text-2xl font-bold text-white">SENHA ATUALIZADA!</h1>
-                    <p className="text-slate-400 text-sm">Sua nova senha foi registrada com sucesso. Você será redirecionado para o painel operacional...</p>
+                    <h1 className="text-2xl font-bold text-app-text-main">SENHA ATUALIZADA!</h1>
+                    <p className="text-app-text-secondary text-sm">Sua nova senha foi registrada com sucesso. Você será redirecionado para o painel operacional...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-app-main flex items-center justify-center p-4">
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 mb-4">
-                        <Key className="w-8 h-8 text-amber-400" />
+                        <Key className="w-8 h-8 text-amber-500" />
                     </div>
-                    <h1 className="text-2xl font-bold text-white uppercase tracking-tight">Primeiro Acesso</h1>
-                    <p className="text-slate-400 mt-2 text-sm italic">Você está utilizando uma senha padrão. Para continuar, defina uma nova senha de segurança.</p>
+                    <h1 className="text-2xl font-bold text-app-text-main uppercase tracking-tight">Primeiro Acesso</h1>
+                    <p className="text-app-text-secondary mt-2 text-sm italic">Você está utilizando uma senha padrão. Para continuar, defina uma nova senha de segurança.</p>
                 </div>
 
                 {/* Card */}
-                <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                <div className="bg-app-card border border-app-border p-8 rounded-2xl shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
 
                     <form onSubmit={handlePasswordChange} className="space-y-6">
                         <div>
-                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Nova Senha</label>
+                            <label className="block text-xs font-bold text-app-text-secondary uppercase mb-2">Nova Senha</label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-app-text-secondary" />
                                 <input
                                     type="password"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg py-3 pl-11 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all"
+                                    className="w-full bg-app-sidebar border border-app-border rounded-lg py-3 pl-11 pr-4 text-app-text-main focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all font-mono"
                                     placeholder="Mínimo 6 caracteres"
                                     required
                                 />
@@ -102,14 +102,14 @@ export function PasswordChange() {
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Confirmar Nova Senha</label>
+                            <label className="block text-xs font-bold text-app-text-secondary uppercase mb-2">Confirmar Nova Senha</label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-app-text-secondary" />
                                 <input
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg py-3 pl-11 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all"
+                                    className="w-full bg-app-sidebar border border-app-border rounded-lg py-3 pl-11 pr-4 text-app-text-main focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all font-mono"
                                     placeholder="Repita a nova senha"
                                     required
                                 />
@@ -125,7 +125,7 @@ export function PasswordChange() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-slate-800 disabled:text-slate-500 text-white font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-900/20"
+                            className="w-full bg-amber-600 hover:bg-amber-500 disabled:bg-app-sidebar disabled:text-app-text-secondary text-white font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-900/20"
                         >
                             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'DEFINIR SENHA E ACESSAR'}
                         </button>

@@ -68,23 +68,23 @@ export function AlertDispatcher() {
     };
 
     return (
-        <div className="p-8 h-full overflow-y-auto custom-scrollbar">
+        <div className="p-8 h-full overflow-y-auto custom-scrollbar bg-app-main">
             <div className="mb-8">
-                <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-app-text-secondary mb-1">
                     <span>Operações</span>
                     <span>›</span>
-                    <span className="text-cyan-400">Despacho de Alertas</span>
+                    <span className="text-app-primary">Despacho de Alertas</span>
                 </div>
-                <h1 className="text-3xl font-bold text-white mb-2">CONTROLE OPERACIONAL DE SMS</h1>
-                <p className="text-slate-400 text-sm">Despacho de alertas técnicos localizados para equipes de manutenção regional.</p>
+                <h1 className="text-3xl font-bold text-app-text-main mb-2">CONTROLE OPERACIONAL DE SMS</h1>
+                <p className="text-app-text-secondary text-sm">Despacho de alertas técnicos localizados para equipes de manutenção regional.</p>
             </div>
 
             <div className="grid grid-cols-12 gap-8 h-full">
                 {/* Main Content Area - Form & History */}
                 <div className="col-span-8 space-y-6">
-                    <div className="p-6 bg-slate-900 rounded-lg border border-slate-800">
-                        <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                            <span className="w-1 h-6 bg-cyan-500 rounded-full"></span>
+                    <div className="p-6 bg-app-card rounded-lg border border-app-border">
+                        <h2 className="text-lg font-semibold text-app-text-main mb-6 flex items-center gap-2">
+                            <span className="w-1 h-6 bg-app-primary rounded-full"></span>
                             CONFIGURAÇÃO DE DESPACHO
                         </h2>
                         <DispatchForm

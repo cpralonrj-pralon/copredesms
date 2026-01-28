@@ -8,15 +8,15 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
     const name = user?.user_metadata?.nome || user?.email?.split('@')[0] || 'Usuário';
 
     return (
-        <div className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-screen text-slate-300">
+        <div className="w-64 bg-app-sidebar border-r border-app-border flex flex-col h-screen text-app-sidebar-text">
             <div className="p-6">
                 <div className="flex items-center gap-3 mb-8">
-                    <div className="w-8 h-8 bg-cyan-600 rounded flex items-center justify-center text-white font-bold">
+                    <div className="w-8 h-8 bg-app-primary rounded flex items-center justify-center text-app-primary-foreground font-bold">
                         CL
                     </div>
                     <div>
-                        <h1 className="text-white font-bold text-sm leading-none">Operações Claro</h1>
-                        <span className="text-xs text-slate-500">COP REDE</span>
+                        <h1 className="text-app-sidebar-text font-bold text-sm leading-none">Operações Claro</h1>
+                        <span className="text-xs text-app-sidebar-text-secondary opacity-70">COP REDE</span>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                     />
 
                     <div className="pt-4 pb-2">
-                        <p className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Operação</p>
+                        <p className="px-3 text-[10px] font-bold text-app-sidebar-text-secondary opacity-60 uppercase tracking-widest">Operação</p>
                     </div>
 
                     <NavItem
@@ -76,7 +76,7 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                     />
 
                     <div className="pt-4 pb-2">
-                        <p className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Monitoração</p>
+                        <p className="px-3 text-[10px] font-bold text-app-sidebar-text-secondary opacity-60 uppercase tracking-widest">Monitoração</p>
                     </div>
 
                     <NavItem
@@ -88,8 +88,8 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                 </nav>
             </div>
 
-            <div className="mt-auto p-6 border-t border-slate-800">
-                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Configuração</h3>
+            <div className="mt-auto p-6 border-t border-app-border">
+                <h3 className="text-xs font-semibold text-app-sidebar-text-secondary opacity-60 uppercase tracking-wider mb-4">Configuração</h3>
                 <nav className="space-y-1">
                     {(user?.user_metadata?.role === 'Admin' || user?.user_metadata?.perfil === 'Admin') && (
                         <NavItem
@@ -100,23 +100,28 @@ export function Sidebar({ activeView, onViewChange }: { activeView: ViewType, on
                         />
                     )}
                     {(user?.user_metadata?.role === 'Admin' || user?.user_metadata?.perfil === 'Admin') && (
-                        <NavItem icon={<Settings size={20} />} label="Ajustes do Sistema" />
+                        <NavItem
+                            icon={<Settings size={20} />}
+                            label="Ajustes do Sistema"
+                            active={activeView === 'settings'}
+                            onClick={() => onViewChange('settings')}
+                        />
                     )}
                 </nav>
 
-                <div className="mt-8 flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg">
-                    <div className="w-8 h-8 rounded-full bg-cyan-900 flex items-center justify-center text-cyan-200 text-xs font-bold">
+                <div className="mt-8 flex items-center gap-3 p-3 bg-app-card/30 rounded-lg border border-app-border/20">
+                    <div className="w-8 h-8 rounded-full bg-app-primary/20 flex items-center justify-center text-app-primary text-xs font-bold ring-1 ring-app-primary/30">
                         {initials}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white truncate">{name}</p>
-                        <p className="text-[10px] text-slate-500 truncate uppercase mt-0.5">
+                        <p className="text-sm font-medium text-app-sidebar-text truncate">{name}</p>
+                        <p className="text-[10px] text-app-sidebar-text-secondary truncate uppercase mt-0.5">
                             {user?.user_metadata?.role || user?.user_metadata?.perfil || 'Operador'}
                         </p>
                     </div>
                     <button
                         onClick={() => signOut()}
-                        className="p-1 hover:bg-slate-700 rounded transition-colors text-slate-500 hover:text-red-400"
+                        className="p-1 hover:bg-app-primary/10 rounded transition-colors text-app-text-secondary hover:text-red-400"
                         title="Sair do Sistema"
                     >
                         <LogOut size={18} />
@@ -132,12 +137,14 @@ function NavItem({ icon, label, active = false, onClick }: { icon: React.ReactNo
         <div
             onClick={onClick}
             className={`
-      flex items-center gap-3 px-3 py-2 rounded-md cursor-pointer transition-colors
-      ${active ? 'bg-cyan-900/30 text-cyan-400 border-l-2 border-cyan-400' : 'hover:bg-slate-800 hover:text-white'}
+      flex items-center gap-3 px-3 py-2 rounded-md cursor-pointer transition-all duration-200
+      ${active
+                    ? 'bg-app-primary/10 text-app-primary border-l-2 border-app-primary shadow-sm'
+                    : 'hover:bg-app-card/50 hover:text-app-sidebar-text text-app-sidebar-text-secondary'}
     `}>
             {icon}
             <span className="text-sm font-medium">{label}</span>
-            {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.5)]" />}
+            {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-app-primary shadow-[0_0_8px_rgba(var(--primary),0.5)]" />}
         </div>
     );
 }

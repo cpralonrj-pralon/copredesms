@@ -59,9 +59,9 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tipo de Mensagem</label>
+                    <label className="text-xs font-bold text-app-text-secondary uppercase tracking-wider">Tipo de Mensagem</label>
                     <select
-                        className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all appearance-none"
+                        className="w-full bg-app-sidebar border border-app-border rounded-lg p-3 text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all appearance-none"
                         value={formData.type}
                         onChange={(e) => handleChange('type', e.target.value)}
                     >
@@ -72,9 +72,9 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Setor Regional</label>
+                    <label className="text-xs font-bold text-app-text-secondary uppercase tracking-wider">Setor Regional</label>
                     <select
-                        className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all appearance-none"
+                        className="w-full bg-app-sidebar border border-app-border rounded-lg p-3 text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all appearance-none"
                         value={formData.region}
                         onChange={(e) => handleChange('region', e.target.value)}
                     >
@@ -87,11 +87,11 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
 
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Descrição do Alerta</label>
-                    <span className="text-xs text-slate-600">{formData.description.length} / 2000 CARACTERES</span>
+                    <label className="text-xs font-bold text-app-text-secondary uppercase tracking-wider">Descrição do Alerta</label>
+                    <span className="text-xs text-app-text-secondary opacity-60">{formData.description.length} / 2000 CARACTERES</span>
                 </div>
                 <textarea
-                    className="w-full h-32 bg-slate-950 border border-slate-700 rounded-lg p-4 text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all resize-none placeholder:text-slate-700 font-mono text-sm"
+                    className="w-full h-32 bg-app-sidebar border border-app-border rounded-lg p-4 text-app-text-main focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all resize-none placeholder:text-app-text-secondary/30 font-mono text-sm"
                     placeholder="[CLARO-OPS] URGENTE: Falha crítica detectada no Site SP-01-A..."
                     value={formData.description}
                     onChange={(e) => handleChange('description', e.target.value)}
@@ -101,21 +101,21 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
 
             <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Despacho Agendado</label>
+                    <label className="text-xs font-bold text-app-text-secondary uppercase tracking-wider">Despacho Agendado</label>
                     <div className="flex gap-2">
                         <div className="relative flex-1">
                             <input
                                 type="time"
-                                className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-cyan-500"
+                                className="w-full bg-app-sidebar border border-app-border rounded-lg p-3 text-app-text-main focus:outline-none focus:border-app-primary"
                                 disabled={formData.time === 'NOW'}
                                 value={formData.time === 'NOW' ? '' : formData.time}
                                 onChange={(e) => handleChange('time', e.target.value)}
                             />
-                            <Clock className="absolute right-3 top-3.5 text-slate-500" size={16} />
+                            <Clock className="absolute right-3 top-3.5 text-app-text-secondary" size={16} />
                         </div>
                         <button
                             type="button"
-                            className={`px-4 rounded-lg font-bold text-xs transition-colors ${formData.time === 'NOW' ? 'bg-slate-700 text-white' : 'bg-slate-800 text-slate-500 hover:bg-slate-700'}`}
+                            className={`px-4 rounded-lg font-bold text-xs transition-colors ${formData.time === 'NOW' ? 'bg-app-primary text-app-primary-foreground' : 'bg-app-card text-app-text-secondary hover:bg-app-sidebar'}`}
                             onClick={() => handleChange('time', 'NOW')}
                         >
                             AGORA
@@ -124,10 +124,10 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ação Necessária</label>
+                    <label className="text-xs font-bold text-app-text-secondary uppercase tracking-wider">Ação Necessária</label>
                     <input
                         type="text"
-                        className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-300 focus:outline-none focus:border-cyan-500 uppercase placeholder:normal-case"
+                        className="w-full bg-app-sidebar border border-app-border rounded-lg p-3 text-app-text-main focus:outline-none focus:border-app-primary uppercase placeholder:normal-case"
                         placeholder="NODE_INSPECTION_B12"
                         value={formData.action}
                         onChange={(e) => handleChange('action', e.target.value)}
@@ -136,13 +136,13 @@ Horário: ${formData.time === 'NOW' ? new Date().toLocaleTimeString('pt-BR', { h
             </div>
 
             <div className="pt-4 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-slate-500 text-xs">
+                <div className="flex items-center gap-2 text-app-text-secondary text-xs">
                     <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                     <span>Validado pelo Coordenador #1203</span>
                 </div>
                 <button
                     type="submit"
-                    className="bg-[#008CBA] hover:bg-[#007da6] text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 shadow-lg shadow-cyan-900/20 transition-all transform hover:scale-105 active:scale-95"
+                    className="bg-app-primary hover:bg-app-primary/80 text-app-primary-foreground px-8 py-3 rounded-lg font-bold flex items-center gap-2 shadow-lg shadow-app-primary/20 transition-all transform hover:scale-105 active:scale-95"
                 >
                     <Send size={18} />
                     DESPACHAR ALERTA

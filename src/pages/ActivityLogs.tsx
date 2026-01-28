@@ -85,7 +85,7 @@ export function ActivityLogs() {
         columnHelper.accessor(row => row.users?.nome || 'Sistema', {
             id: 'operador',
             header: 'OPERADOR',
-            cell: info => <span className="font-medium text-white">{info.getValue()}</span>
+            cell: info => <span className="font-medium text-app-text-main">{info.getValue()}</span>
         }),
         columnHelper.accessor('canal', {
             header: 'CANAL',
@@ -99,14 +99,14 @@ export function ActivityLogs() {
         columnHelper.accessor('regional', {
             header: 'REGIONAL',
             cell: info => (
-                <span className="px-2 py-1 rounded-full bg-slate-800 text-[10px] font-bold border border-slate-700 uppercase">
+                <span className="px-2 py-1 rounded-full bg-app-sidebar text-[10px] font-bold border border-app-border text-app-text-secondary uppercase">
                     {info.getValue() || 'N/A'}
                 </span>
             )
         }),
         columnHelper.accessor('mensagem', {
             header: 'MENSAGEM',
-            cell: info => <div className="truncate max-w-[300px] text-xs font-mono text-slate-500" title={info.getValue()}>{info.getValue()}</div>
+            cell: info => <div className="truncate max-w-[300px] text-xs font-mono text-app-text-secondary" title={info.getValue()}>{info.getValue()}</div>
         }),
         columnHelper.accessor('status', {
             header: 'STATUS',
@@ -171,34 +171,34 @@ export function ActivityLogs() {
     };
 
     return (
-        <div className="p-8 h-full overflow-y-auto custom-scrollbar bg-slate-950">
+        <div className="p-8 h-full overflow-y-auto custom-scrollbar bg-app-main">
             {/* Header */}
             <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <div>
-                    <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+                    <div className="flex items-center gap-2 text-sm text-app-text-secondary mb-1">
                         <span>Monitoramento</span>
                         <span>›</span>
-                        <span className="text-cyan-500">Auditoria</span>
+                        <span className="text-app-primary">Auditoria</span>
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2 uppercase tracking-tight">Logs de Atividade</h1>
-                    <p className="text-slate-400 text-sm">Histórico operacional detalhado com filtros e exportação.</p>
+                    <h1 className="text-3xl font-bold text-app-text-main mb-2 uppercase tracking-tight">Logs de Atividade</h1>
+                    <p className="text-app-text-secondary text-sm">Histórico operacional detalhado com filtros e exportação.</p>
                 </div>
                 <div className="flex gap-2">
                     <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all shadow-lg shadow-emerald-900/20">
                         <Download size={16} /> EXPORTAR CSV
                     </button>
-                    <button onClick={fetchLogs} className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-all">
+                    <button onClick={fetchLogs} className="p-2 bg-app-sidebar hover:bg-app-border rounded-lg text-app-text-secondary hover:text-app-text-main transition-all border border-app-border">
                         <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
                     </button>
                 </div>
             </div>
 
             {/* Filters */}
-            <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
-                <div className="flex flex-1 items-center gap-2 w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2">
-                    <Search size={16} className="text-slate-500" />
+            <div className="bg-app-card border border-app-border p-4 rounded-xl mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="flex flex-1 items-center gap-2 w-full bg-app-sidebar border border-app-border rounded-lg px-3 py-2">
+                    <Search size={16} className="text-app-text-secondary" />
                     <input
-                        className="bg-transparent border-none outline-none text-sm text-slate-200 w-full placeholder:text-slate-600"
+                        className="bg-transparent border-none outline-none text-sm text-app-text-main w-full placeholder:text-app-text-secondary/30"
                         placeholder="Buscar por mensagem, regional ou operador..."
                         value={globalFilter}
                         onChange={e => setGlobalFilter(e.target.value)}
@@ -206,7 +206,7 @@ export function ActivityLogs() {
                 </div>
                 <div className="flex gap-2 w-full md:w-auto">
                     <select
-                        className="bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-lg px-3 py-2 outline-none focus:border-cyan-500"
+                        className="bg-app-sidebar border border-app-border text-app-text-secondary text-xs rounded-lg px-3 py-2 outline-none focus:border-app-primary"
                         value={statusFilter}
                         onChange={e => setStatusFilter(e.target.value)}
                     >
@@ -215,7 +215,7 @@ export function ActivityLogs() {
                         <option value="FAILED">Falha</option>
                     </select>
                     <select
-                        className="bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-lg px-3 py-2 outline-none focus:border-cyan-500"
+                        className="bg-app-sidebar border border-app-border text-app-text-secondary text-xs rounded-lg px-3 py-2 outline-none focus:border-app-primary"
                         value={channelFilter}
                         onChange={e => setChannelFilter(e.target.value)}
                     >
@@ -227,13 +227,13 @@ export function ActivityLogs() {
             </div>
 
             {/* Table */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+            <div className="bg-app-card border border-app-border rounded-xl overflow-hidden shadow-xl">
                 <table className="w-full text-left">
-                    <thead className="bg-slate-950 text-xs uppercase font-bold text-slate-500 border-b border-slate-800">
+                    <thead className="bg-app-sidebar text-xs uppercase font-bold text-app-text-secondary border-b border-app-border">
                         {table.getHeaderGroups().map(headerGroup => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map(header => (
-                                    <th key={header.id} className="px-6 py-4 cursor-pointer hover:text-cyan-400 transition-colors" onClick={header.column.getToggleSortingHandler()}>
+                                    <th key={header.id} className="px-6 py-4 cursor-pointer hover:text-app-primary transition-colors" onClick={header.column.getToggleSortingHandler()}>
                                         <div className="flex items-center gap-1">
                                             {flexRender(header.column.columnDef.header, header.getContext())}
                                             {header.column.getIsSorted() === 'asc' ? ' ▲' : header.column.getIsSorted() === 'desc' ? ' ▼' : ''}
@@ -243,11 +243,11 @@ export function ActivityLogs() {
                             </tr>
                         ))}
                     </thead>
-                    <tbody className="divide-y divide-slate-800">
+                    <tbody className="divide-y divide-app-border">
                         {table.getRowModel().rows.map(row => (
-                            <tr key={row.id} className="hover:bg-slate-800/50 transition-colors">
+                            <tr key={row.id} className="hover:bg-app-sidebar/50 transition-colors">
                                 {row.getVisibleCells().map(cell => (
-                                    <td key={cell.id} className="px-6 py-4">
+                                    <td key={cell.id} className="px-6 py-4 text-app-text-secondary">
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
@@ -255,7 +255,7 @@ export function ActivityLogs() {
                         ))}
                         {filteredData.length === 0 && (
                             <tr>
-                                <td colSpan={columns.length} className="px-6 py-12 text-center text-slate-500">
+                                <td colSpan={columns.length} className="px-6 py-12 text-center text-app-text-secondary">
                                     Nenhum registro encontrado.
                                 </td>
                             </tr>
@@ -264,34 +264,34 @@ export function ActivityLogs() {
                 </table>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-between px-6 py-4 bg-slate-950 border-t border-slate-800">
-                    <span className="text-xs text-slate-500">
+                <div className="flex items-center justify-between px-6 py-4 bg-app-sidebar border-t border-app-border">
+                    <span className="text-xs text-app-text-secondary">
                         Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()} • Total: {filteredData.length} registros
                     </span>
                     <div className="flex items-center gap-1">
                         <button
-                            className="p-1 rounded hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent text-slate-400"
+                            className="p-1 rounded hover:bg-app-border disabled:opacity-30 disabled:hover:bg-transparent text-app-text-secondary"
                             onClick={() => table.setPageIndex(0)}
                             disabled={!table.getCanPreviousPage()}
                         >
                             <ChevronsLeft size={16} />
                         </button>
                         <button
-                            className="p-1 rounded hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent text-slate-400"
+                            className="p-1 rounded hover:bg-app-border disabled:opacity-30 disabled:hover:bg-transparent text-app-text-secondary"
                             onClick={() => table.previousPage()}
                             disabled={!table.getCanPreviousPage()}
                         >
                             <ChevronLeft size={16} />
                         </button>
                         <button
-                            className="p-1 rounded hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent text-slate-400"
+                            className="p-1 rounded hover:bg-app-border disabled:opacity-30 disabled:hover:bg-transparent text-app-text-secondary"
                             onClick={() => table.nextPage()}
                             disabled={!table.getCanNextPage()}
                         >
                             <ChevronRight size={16} />
                         </button>
                         <button
-                            className="p-1 rounded hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent text-slate-400"
+                            className="p-1 rounded hover:bg-app-border disabled:opacity-30 disabled:hover:bg-transparent text-app-text-secondary"
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                             disabled={!table.getCanNextPage()}
                         >

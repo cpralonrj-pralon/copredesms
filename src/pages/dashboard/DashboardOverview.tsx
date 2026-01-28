@@ -45,20 +45,20 @@ export function DashboardOverview() {
 
     if (loading) {
         return (
-            <div className="flex h-full items-center justify-center bg-slate-950">
-                <div className="text-cyan-500 animate-pulse text-sm font-medium">Carregando dados operacionais...</div>
+            <div className="flex h-full items-center justify-center bg-app-main">
+                <div className="text-app-primary animate-pulse text-sm font-medium">Carregando dados operacionais...</div>
             </div>
         );
     }
 
     return (
-        <div className="p-6 space-y-6 overflow-y-auto h-full bg-slate-950 text-slate-200">
+        <div className="p-6 space-y-6 overflow-y-auto h-full bg-app-main text-app-text-main">
             <header className="mb-8 flex justify-between items-end">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Visão Geral da Operação</h1>
-                    <p className="text-slate-500 text-sm mt-1">Monitoramento em tempo real do gateway de mensagens.</p>
+                    <h1 className="text-2xl font-bold text-app-text-main">Visão Geral da Operação</h1>
+                    <p className="text-app-text-secondary text-sm mt-1">Monitoramento em tempo real do gateway de mensagens.</p>
                 </div>
-                <div className="text-xs text-slate-500 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-md">
+                <div className="text-xs text-app-text-secondary bg-app-sidebar border border-app-border px-3 py-1.5 rounded-md">
                     Atualizado em: {new Date().toLocaleTimeString()}
                 </div>
             </header>
@@ -70,7 +70,7 @@ export function DashboardOverview() {
                     value={kpi?.totalMessages.toLocaleString() || '0'}
                     trend={kpi?.trend}
                     trendValue="vs. ontem"
-                    icon={<MessageSquare className="text-cyan-500" size={24} />}
+                    icon={<MessageSquare className="text-app-primary" size={24} />}
                 />
                 <StatsCard
                     title="Envios SMS"
@@ -100,12 +100,16 @@ export function DashboardOverview() {
                 <ChartContainer title="Volume de Envios (7 Dias)">
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={dailyVolume}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                            <XAxis dataKey="date" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-                            <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value / 1000}k`} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--border), 0.5)" />
+                            <XAxis dataKey="date" stroke="rgb(var(--text-secondary))" fontSize={12} tickLine={false} axisLine={false} />
+                            <YAxis stroke="rgb(var(--text-secondary))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value / 1000}k`} />
                             <Tooltip
-                                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#e2e8f0' }}
-                                itemStyle={{ color: '#e2e8f0' }}
+                                contentStyle={{
+                                    backgroundColor: 'rgb(var(--bg-card))',
+                                    borderColor: 'rgb(var(--border))',
+                                    color: 'rgb(var(--text-main))'
+                                }}
+                                itemStyle={{ color: 'rgb(var(--text-main))' }}
                             />
                             <Legend />
                             <Line type="monotone" dataKey="sms" name="SMS" stroke="#3b82f6" strokeWidth={2} dot={false} activeDot={{ r: 6 }} />
@@ -121,20 +125,24 @@ export function DashboardOverview() {
                             layout="vertical"
                             margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
                         >
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
-                            <XAxis type="number" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} hide />
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(var(--border), 0.5)" horizontal={false} />
+                            <XAxis type="number" stroke="rgb(var(--text-secondary))" fontSize={10} tickLine={false} axisLine={false} hide />
                             <YAxis
                                 dataKey="name"
                                 type="category"
-                                stroke="#94a3b8"
+                                stroke="rgb(var(--text-secondary))"
                                 fontSize={10}
                                 tickLine={false}
                                 axisLine={false}
                                 width={120}
                             />
                             <Tooltip
-                                cursor={{ fill: '#1e293b' }}
-                                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#e2e8f0' }}
+                                cursor={{ fill: 'rgba(var(--bg-card), 0.5)' }}
+                                contentStyle={{
+                                    backgroundColor: 'rgb(var(--bg-card))',
+                                    borderColor: 'rgb(var(--border))',
+                                    color: 'rgb(var(--text-main))'
+                                }}
                             />
                             <Bar dataKey="success" name="Sucesso" stackId="a" fill="#0ea5e9" radius={[0, 4, 4, 0]} barSize={20} />
                             <Bar dataKey="failed" name="Falha" stackId="a" fill="#ef4444" radius={[0, 4, 4, 0]} barSize={20} />

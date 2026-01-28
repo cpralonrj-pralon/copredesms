@@ -48,21 +48,21 @@ export function IncidentImpactGenerator() {
     };
 
     return (
-        <div className="p-8 h-full overflow-y-auto custom-scrollbar">
+        <div className="p-8 h-full overflow-y-auto custom-scrollbar bg-app-main">
             <div className="mb-8">
-                <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-app-text-secondary mb-1">
                     <span>Operações</span>
                     <span>›</span>
                     <span className="text-amber-500">Incidente com Impacto</span>
                 </div>
-                <h1 className="text-3xl font-bold text-white mb-2 uppercase">Gerador de Incidente Padronizado</h1>
-                <p className="text-slate-400 text-sm">Estruturação de mensagens de impacto seguindo o protocolo oficial COP REDE.</p>
+                <h1 className="text-3xl font-bold text-app-text-main mb-2 uppercase">Gerador de Incidente Padronizado</h1>
+                <p className="text-app-text-secondary text-sm">Estruturação de mensagens de impacto seguindo o protocolo oficial COP REDE.</p>
             </div>
 
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-12 lg:col-span-8 space-y-6">
-                    <div className="p-6 bg-slate-900 rounded-lg border border-slate-800">
-                        <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2 uppercase tracking-tight">
+                    <div className="p-6 bg-app-card rounded-lg border border-app-border">
+                        <h2 className="text-lg font-semibold text-app-text-main mb-6 flex items-center gap-2 uppercase tracking-tight">
                             <span className="w-1 h-6 bg-amber-500 rounded-full"></span>
                             Dados Técnicos do Incidente
                         </h2>
@@ -89,13 +89,13 @@ export function IncidentImpactGenerator() {
                     )}
 
                     {isValid && (
-                        <div className="p-6 bg-slate-900 rounded-lg border border-slate-800 border-l-4 border-l-emerald-500 animate-fade-in">
+                        <div className="p-6 bg-app-card rounded-lg border border-app-border border-l-4 border-l-emerald-500 animate-fade-in">
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="text-xs font-bold text-emerald-500 uppercase">Mensagem Final Pronta</h3>
                                 <div className="flex items-center gap-3">
                                     <button
                                         onClick={handleCopy}
-                                        className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md text-xs font-bold transition-all"
+                                        className="flex items-center gap-2 px-4 py-2 bg-app-sidebar hover:bg-app-border text-app-text-main rounded-md text-xs font-bold transition-all border border-app-border"
                                     >
                                         {copied ? <Check size={14} /> : <Copy size={14} />}
                                         {copied ? 'COPIADO' : 'COPIAR'}
@@ -115,7 +115,7 @@ export function IncidentImpactGenerator() {
                                     </button>
                                 </div>
                             </div>
-                            <pre className="p-4 bg-slate-950 rounded border border-slate-800 text-slate-300 font-mono text-xs whitespace-pre-wrap leading-relaxed">
+                            <pre className="p-4 bg-app-sidebar rounded border border-app-border text-app-text-main font-mono text-xs whitespace-pre-wrap leading-relaxed">
                                 {currentMessage}
                             </pre>
                             {currentMessage.length > 2000 && (
